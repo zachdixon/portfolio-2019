@@ -1,0 +1,27 @@
+$color1: #181f0c;
+$color2: #472f30;
+$color3: #bfd56f;
+$color4: #dfdfd4;
+$color5: #a88f6b;
+
+:export {
+  color1: $color1;
+  color2: $color2;
+  color3: $color3;
+  color4: $color4;
+  color5: $color5;
+  linkBackgroundColor: linear-gradient(to right, $color1, $color3);
+  pageBackgroundColor: linear-gradient(to bottom, $color1, $color3);
+  linkTextColor: $color3;
+  textColor: $color5;
+  accentColor: $color3;
+}
+.content {
+  height: 100%;
+}
+
+.content :global {
+  p {
+    color: $color1;
+  }
+}
