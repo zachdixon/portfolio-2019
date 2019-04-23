@@ -16,12 +16,62 @@ $color5: #a88f6b;
   textColor: $color5;
   accentColor: $color3;
 }
-.content {
-  height: 100%;
+
+.contentInner {
+  padding: 5em;
 }
 
-.content :global {
-  p {
-    color: $color1;
-  }
+h1 {
+  font-size: 5em;
+  color: $color1;
+  text-shadow: -4px 0 0 $color3;
+  margin-top: 0;
+}
+
+.intro {
+  max-width: 600px;
+  color: $color5;
+  font-weight: bold;
+  font-size: 1.25em;
+  margin-bottom: 60px;
+}
+
+.timeline {
+  width: 100%;
+}
+
+.entry {
+  border: 0 groove $color3;
+  padding: 0 30px;
+  border-radius: 30px;
+}
+
+.entryLeft {
+  text-align: right;
+  margin-right: calc(50% - 15px);
+  border-right-width: 30px;
+}
+
+.entryRight {
+  text-align: left;
+  margin-left: calc(50% - 15px);
+  border-left-width: 30px;
+}
+
+.entryDate {
+  color: $color1;
+  text-shadow: -4px 0 0 $color3;
+  font-size: 3em;
+  margin: 0;
+}
+
+.entryTitle {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $color2;
+  margin-top: 0;
+}
+
+.entryText {
+  color: $color2;
 }
