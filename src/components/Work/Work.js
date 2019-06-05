@@ -11,7 +11,26 @@ export default function Work(props) {
       pageBackgroundColor={styles.pageBackgroundColor}
     >
       <div>
-        <p>Work content</p>
+        <div className={styles.content}>
+          <section>
+            <header>
+              <h1 className={styles.title}>Work &amp; Skills</h1>
+            </header>
+            <article>
+              <header>
+                <h2>Strengths</h2>
+              </header>
+              <p className={styles.skillDescription}>
+                My primary language is JavaScript.
+              </p>
+            </article>
+            <article>
+              <header>
+                <h2>Weaknesses</h2>
+              </header>
+            </article>
+          </section>
+        </div>
       </div>
     </Page>
   );

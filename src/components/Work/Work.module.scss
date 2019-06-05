@@ -31,8 +31,24 @@ $color5: #ffffd0;
   accentColor: $color4;
 }
 
-.content :global {
+.content {
+  h2 {
+    color: $color3;
+  }
   p {
     color: $color1;
   }
+}
+
+.content > section:first-child {
+  height: 100vh;
+  padding: 5vmax;
+}
+
+.title {
+  font-family: "Permanent Marker", cursive;
+  font-size: 5vmax;
+  color: $color1;
+  text-shadow: -4px 0 0 $color2;
+  margin-top: 0;
 }

@@ -13,7 +13,9 @@ export default function Page({
   linkBackgroundColor = "#000",
   linkTextColor = "#fff",
   pageBackgroundColor = "#000",
-  classNames = {}
+  classNames = {},
+  onLinkHover = () => {},
+  direction = "center"
 }) {
   return (
     <div
@@ -29,13 +31,16 @@ export default function Page({
         "--pageBackgroundColor": pageBackgroundColor
       }}
     >
-      <CSSTransition in={!active} timeout={600} classNames="fade-out">
-        <div className={styles.pageBackground} />
+      <CSSTransition in={!active} timeout={1500} classNames="page-background">
+        <div
+          className={styles.pageBackground}
+          style={{ transformOrigin: direction }}
+        />
       </CSSTransition>
       <div className={[styles.pageContent, classNames.content].join(" ")}>
         <Route
           path={path}
-          render={props => React.cloneElement(children, props)}
+          render={props => React.cloneElement(children)}
           exact={true}
         />
       </div>
@@ -53,8 +58,9 @@ export default function Page({
             ...overrideStyles.pageLink,
             "--linkTextColor": linkTextColor
           }}
+          onMouseOver={onLinkHover}
         >
-          <p>{linkText || title}</p>
+          {linkText || title}
         </Link>
       </CSSTransition>
     </div>

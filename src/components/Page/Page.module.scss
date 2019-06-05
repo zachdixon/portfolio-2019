@@ -1,13 +1,14 @@
-$pageTransitionTime: 600ms;
+$pageTransitionTime: 1s;
 
 .page {
   height: 100%;
   width: 75px;
   position: relative;
-  transition: width $pageTransitionTime;
+  // transition: width $pageTransitionTime;
   border-right: 1px solid #efefef;
   overflow: hidden;
   transform: translateZ(0);
+  will-change: width;
 
   &.active {
     width: calc(100% - 300px);
@@ -30,7 +31,9 @@ $pageTransitionTime: 600ms;
   position: absolute;
   background: var(--pageBackgroundColor);
   z-index: 1;
-  display: none;
+  // display: none;
+  transform: scaleX(0);
+  opacity: 1;
 }
 .pageContent {
   opacity: 0;
@@ -98,17 +101,12 @@ $pageTransitionTime: 600ms;
     color: #000;
   }
 }
+
 :global {
-  .fade-out-exit {
-    display: flex;
-    opacity: 1;
-  }
-  .fade-out-exit-active {
+  .page-background-exit-active {
     opacity: 0;
-    transition: opacity 300ms ease 300ms;
-  }
-  .fade-out-exit-done {
-    display: none;
+    transform: scaleX(1);
+    transition: transform 1s, opacity 500ms ease 500ms;
   }
   .fade-in-out-appear-done {
     display: flex;
@@ -135,3 +133,20 @@ $pageTransitionTime: 600ms;
     display: none;
   }
 }
+
+// @for $i from 1 to 6 {
+//   .page:nth-child(#{$i}) .pageLink:before {
+//     animation: initialLink-#{$i} 1s;
+//     animation-delay: $i * 0.25s;
+//   }
+//   @keyframes initialLink-#{$i} {
+//     0% {
+//       clip: rect(0, 100vh, 75px, 0);
+//       clip-path: inset(0);
+//     }
+//     100% {
+//       clip: rect(0, 0, 75px, 0);
+//       clip-path: inset(0 100% 0 0);
+//     }
+//   }
+// }

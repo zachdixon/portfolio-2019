@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./About.module.scss";
 import Fade from "react-reveal/Fade";
 import Page from "components/Page";
+import Tilt from "react-tilt";
 
 export default function About(props) {
   return (
@@ -15,9 +16,9 @@ export default function About(props) {
         <h1 className={styles.title}>About Me</h1>
         <p className={styles.intro}>
           Hi, my name is Zachary Dixon. I'm a front-end developer with over 7
-          years of professional experience. I'm comfortable with JavaScript
-          (React, Meteor), HTML, and CSS. I love learning new things and I'm not
-          afraid of diving head-first into the unknown.
+          years of professional experience. I'm comfortable with JavaScript,
+          HTML, and CSS. I love learning new things and I'm not afraid of diving
+          head-first into the unknown.
         </p>
         <div className={styles.timeline}>
           <Entry date="2012" title="My First Job!">
@@ -48,12 +49,12 @@ export default function About(props) {
           <Entry right date="2015" title="Freedom">
             Working remote was all the rage for developers, and I wanted to be a
             part of it. I accepted a position back at HipLogiq (now
-            SocialCentiv) as the Lead Front End Developer and was allowed to
+            SocialCentiv) as the Lead Front-end Developer and was allowed to
             work remotely a few days a week, eventually moving to fully remote.
             My dream job.
           </Entry>
           <Entry date="Present" title="To be continued...">
-            Although I'm still the Lead Front End Developer at now Respondology,
+            Although I'm still the Lead Front-end Developer at now Respondology,
             I've learned more than I could have imagined when I started this
             journey. I'm excited to see where the future leads.
           </Entry>
@@ -70,18 +71,22 @@ const Entry = ({ right, date, title, children }) => {
   } else {
     fadeProps.left = true;
   }
+  // const { x, y } = useMousePosition();
+  // console.log(x, y);
   return (
     <Fade {...fadeProps} delay={300}>
-      <div
-        className={[
-          styles.entry,
-          styles[`entry${right ? "Right" : "Left"}`]
-        ].join(" ")}
-      >
-        <p className={styles.entryDate}>{date}</p>
-        <p className={styles.entryTitle}>{title}</p>
-        <p className={styles.entryText}>{children}</p>
-      </div>
+      <Tilt>
+        <div
+          className={[
+            styles.entry,
+            styles[`entry${right ? "Right" : "Left"}`]
+          ].join(" ")}
+        >
+          <p className={styles.entryDate}>{date}</p>
+          <p className={styles.entryTitle}>{title}</p>
+          <p className={styles.entryText}>{children}</p>
+        </div>
+      </Tilt>
     </Fade>
   );
 };

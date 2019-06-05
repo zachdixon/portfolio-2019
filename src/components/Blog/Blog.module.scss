@@ -29,8 +29,10 @@ $color5: #f2f2f2;
   accentColor: $color4;
 }
 
-.content :global {
-  p {
-    color: $color1;
-  }
+.contentInner {
+  height: 100%;
+  // background-image: url(./wave.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
 }
