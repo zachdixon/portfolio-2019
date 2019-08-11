@@ -1,6 +1,11 @@
 import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+
 import styles from "./Work.module.scss";
 import Page from "components/Page";
+import ProjectList from "./ProjectList";
+import Project from "./Project";
+import projects from "./projects";
 
 export default function Work(props) {
   return (
@@ -10,28 +15,25 @@ export default function Work(props) {
       linkTextColor={styles.linkTextColor}
       pageBackgroundColor={styles.pageBackgroundColor}
     >
-      <div>
-        <div className={styles.content}>
-          <section>
-            <header>
-              <h1 className={styles.title}>Work &amp; Skills</h1>
-            </header>
-            <article>
-              <header>
-                <h2>Strengths</h2>
-              </header>
-              <p className={styles.skillDescription}>
-                My primary language is JavaScript.
-              </p>
-            </article>
-            <article>
-              <header>
-                <h2>Weaknesses</h2>
-              </header>
-            </article>
-          </section>
-        </div>
-      </div>
+      <main className={styles.content}>
+        <section>
+          <header>
+            <h1 className={styles.title}>Work</h1>
+          </header>
+          <Switch>
+            <Route path="/work" component={ProjectList} exact />
+            {projects.map(project => (
+              <Route
+                key={project.slug}
+                path={`/work/${project.slug}`}
+                render={() => <Project {...project} />}
+                exact
+              />
+            ))}
+            <Route render={() => <Redirect to="/work" />} />
+          </Switch>
+        </section>
+      </main>
     </Page>
   );
 }

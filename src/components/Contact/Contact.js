@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import styles from "./Contact.module.scss";
 import Page from "components/Page";
 
@@ -9,21 +9,28 @@ const encode = data => {
 };
 
 export default function Contact(props) {
-  const [name, setName] = useState(),
-    [email, setEmail] = useState(),
-    [message, setMessage] = useState();
+  const [name, setName] = useState(""),
+    [email, setEmail] = useState(""),
+    [message, setMessage] = useState(""),
+    [messageSent, setMessageSent] = useState(false);
 
-  const handleSubmit = useCallback(e => {
-    e.preventDefault();
+  const isFormValid = useMemo(() => {
+    return !!(name && email && message);
+  }, [name, email, message]);
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
 
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", name, email, message })
-    })
-      .then(() => alert("Success!"))
-      .catch(error => alert(error));
-  });
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", name, email, message })
+      })
+        .then(() => setMessageSent(true))
+        .catch(error => alert(error));
+    },
+    [name, email, message, setMessageSent]
+  );
   return (
     <Page
       {...props}
@@ -31,45 +38,61 @@ export default function Contact(props) {
       linkTextColor={styles.linkTextColor}
       pageBackgroundColor={styles.pageBackgroundColor}
     >
-      <div>
+      <main className={styles.content}>
+        <header>
+          <h1 className={styles.sayHello}>
+            <span>Say</span>
+            <span>Hello</span>
+          </h1>
+        </header>
         <form onSubmit={handleSubmit}>
-          <p>
-            <label>
-              Your Name:{" "}
-              <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={e => setName(e.currentTarget.value)}
-              />
-            </label>
-          </p>
-          <p>
-            <label>
-              Your Email:{" "}
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={e => setEmail(e.currentTarget.value)}
-              />
-            </label>
-          </p>
-          <p>
-            <label>
-              Message:{" "}
-              <textarea
-                name="message"
-                value={message}
-                onChange={e => setMessage(e.currentTarget.value)}
-              />
-            </label>
-          </p>
-          <p>
-            <button type="submit">Send</button>
-          </p>
+          <div className={styles.inputWrapper}>
+            <label htmlFor="name">Hi Zach! My name is </label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              value={name}
+              placeholder="your name"
+              onChange={e => setName(e.currentTarget.value)}
+              required
+            />
+          </div>
+          <div className={styles.inputWrapper}>
+            <label htmlFor="email">You can contact me at </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="your email"
+              value={email}
+              onChange={e => setEmail(e.currentTarget.value)}
+              required
+            />
+          </div>
+          <div className={styles.inputWrapper}>
+            <label htmlFor="message">I'm reaching out to you because </label>
+            <textarea
+              id="message"
+              className={styles.message}
+              name="message"
+              value={message}
+              placeholder="your message"
+              onChange={e => setMessage(e.currentTarget.value)}
+              required
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className={styles.btnSubmit}
+              disabled={!isFormValid}
+            >
+              Send
+            </button>
+          </div>
         </form>
-      </div>
+      </main>
     </Page>
   );
 }

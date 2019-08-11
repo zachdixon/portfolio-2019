@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import styles from "./Page.module.scss";
 import { CSSTransition } from "react-transition-group";
 import { Route, Link } from "react-router-dom";
-export default function Page({
+const Page = ({
   children,
   title,
   path,
@@ -15,8 +16,13 @@ export default function Page({
   pageBackgroundColor = "#000",
   classNames = {},
   onLinkHover = () => {},
-  direction = "center"
-}) {
+  direction = "center",
+  location: { pathname }
+}) => {
+  const pageContent = useRef(null);
+  useEffect(() => {
+    pageContent.current && pageContent.current.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <div
       onClick={onClick}
@@ -37,11 +43,13 @@ export default function Page({
           style={{ transformOrigin: direction }}
         />
       </CSSTransition>
-      <div className={[styles.pageContent, classNames.content].join(" ")}>
+      <div
+        ref={pageContent}
+        className={[styles.pageContent, classNames.content].join(" ")}
+      >
         <Route
           path={path}
-          render={props => React.cloneElement(children)}
-          exact={true}
+          render={props => (active ? React.cloneElement(children) : null)}
         />
       </div>
       <CSSTransition
@@ -65,4 +73,6 @@ export default function Page({
       </CSSTransition>
     </div>
   );
-}
+};
+
+export default withRouter(Page);

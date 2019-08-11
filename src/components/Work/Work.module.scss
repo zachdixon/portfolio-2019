@@ -40,8 +40,8 @@ $color5: #ffffd0;
   }
 }
 
-.content > section:first-child {
-  height: 100vh;
+.content > section:first-of-type {
+  min-height: 100vh;
   padding: 5vmax;
 }
 
@@ -51,4 +51,52 @@ $color5: #ffffd0;
   color: $color1;
   text-shadow: -4px 0 0 $color2;
   margin-top: 0;
+}
+
+.projectList {
+  margin: -15px;
+}
+
+.projectThumb {
+  width: calc(50% - 30px);
+  margin: 15px;
+  position: relative;
+  display: inline-block;
+
+  &:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(
+      135deg,
+      $color1,
+      $color2,
+      $color3,
+      $color4,
+      $color5
+    );
+  }
+
+  img {
+    width: 100%;
+    transform: scale(0.975);
+    filter: grayscale(1);
+    transition: all 300ms;
+  }
+
+  &:hover {
+    img {
+      transform: scale(0.95);
+      filter: grayscale(0);
+    }
+  }
+}
+
+.projectImage {
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
 }

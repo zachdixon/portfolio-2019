@@ -24,7 +24,7 @@ export default function Home(props) {
           </h1>
           <Fade bottom>
             <p className={styles.title}>
-              Front-End Developer &bull; Dallas, TX
+              Front-End Developer &bull; Austin, TX
             </p>
           </Fade>
         </div>
