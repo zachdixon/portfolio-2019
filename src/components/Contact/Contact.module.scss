@@ -18,6 +18,7 @@ $color5: #f5fff1;
 }
 
 .content :global {
+  p,
   label {
     color: $color1;
     font-size: 3rem;
@@ -31,10 +32,13 @@ $color5: #f5fff1;
     font-size: 3rem;
     color: $color2;
   }
+  form {
+    width: 100%;
+  }
 }
 
 .content {
-  padding: 15rem;
+  padding: 10rem;
 }
 
 .sayHello {
@@ -68,5 +72,14 @@ $color5: #f5fff1;
 
   &:not(:disabled):hover {
     color: $color1;
+  }
+}
+
+.error {
+  background: rgb(255, 111, 111);
+  padding: 1em;
+  p {
+    color: #fff;
+    margin: 0;
   }
 }

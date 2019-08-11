@@ -1,4 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
+import Fade from "react-reveal/Fade";
+
 import styles from "./Contact.module.scss";
 import Page from "components/Page";
 
@@ -12,7 +14,8 @@ export default function Contact(props) {
   const [name, setName] = useState(""),
     [email, setEmail] = useState(""),
     [message, setMessage] = useState(""),
-    [messageSent, setMessageSent] = useState(false);
+    [messageSent, setMessageSent] = useState(false),
+    [error, setError] = useState();
 
   const isFormValid = useMemo(() => {
     return !!(name && email && message);
@@ -20,6 +23,7 @@ export default function Contact(props) {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
+      setError(null);
 
       fetch("/", {
         method: "POST",
@@ -27,9 +31,9 @@ export default function Contact(props) {
         body: encode({ "form-name": "contact", name, email, message })
       })
         .then(() => setMessageSent(true))
-        .catch(error => alert(error));
+        .catch(error => setError(error));
     },
-    [name, email, message, setMessageSent]
+    [name, email, message, setMessageSent, error, setError]
   );
   return (
     <Page
@@ -45,53 +49,64 @@ export default function Contact(props) {
             <span>Hello</span>
           </h1>
         </header>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.inputWrapper}>
-            <label htmlFor="name">Hi Zach! My name is </label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              value={name}
-              placeholder="your name"
-              onChange={e => setName(e.currentTarget.value)}
-              required
-            />
-          </div>
-          <div className={styles.inputWrapper}>
-            <label htmlFor="email">You can contact me at </label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              placeholder="your email"
-              value={email}
-              onChange={e => setEmail(e.currentTarget.value)}
-              required
-            />
-          </div>
-          <div className={styles.inputWrapper}>
-            <label htmlFor="message">I'm reaching out to you because </label>
-            <textarea
-              id="message"
-              className={styles.message}
-              name="message"
-              value={message}
-              placeholder="your message"
-              onChange={e => setMessage(e.currentTarget.value)}
-              required
-            />
-          </div>
-          <div>
-            <button
-              type="submit"
-              className={styles.btnSubmit}
-              disabled={!isFormValid}
-            >
-              Send
-            </button>
-          </div>
-        </form>
+        {messageSent ? (
+          <Fade>
+            <p>Thanks! I'll get back to you as soon as I can.</p>
+          </Fade>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div className={styles.inputWrapper}>
+              <label htmlFor="name">Hi Zach! My name is </label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                value={name}
+                placeholder="your name"
+                onChange={e => setName(e.currentTarget.value)}
+                required
+              />
+            </div>
+            <div className={styles.inputWrapper}>
+              <label htmlFor="email">You can contact me at </label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="your email"
+                value={email}
+                onChange={e => setEmail(e.currentTarget.value)}
+                required
+              />
+            </div>
+            <div className={styles.inputWrapper}>
+              <label htmlFor="message">I'm reaching out to you because </label>
+              <textarea
+                id="message"
+                className={styles.message}
+                name="message"
+                value={message}
+                placeholder="your message"
+                onChange={e => setMessage(e.currentTarget.value)}
+                required
+              />
+            </div>
+            {error && (
+              <div className={styles.error}>
+                <p>{error}</p>
+              </div>
+            )}
+            <div>
+              <button
+                type="submit"
+                className={styles.btnSubmit}
+                disabled={!isFormValid}
+              >
+                Send
+              </button>
+            </div>
+          </form>
+        )}
       </main>
     </Page>
   );
