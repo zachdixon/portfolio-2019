@@ -2,6 +2,52 @@ import React from "react";
 import styles from "./About.module.scss";
 import Fade from "react-reveal/Fade";
 import Page from "components/Page";
+import Tilt from "react-tilt";
+
+const entries = [
+  {
+    title: "My First Job!",
+    date: "2012",
+    description:
+      "I landed my first developer job just before I graduated at a startup called SocialCompass. I started out building landing pages and emails."
+  },
+  {
+    title: "Graduated",
+    date: "2012",
+    description:
+      "I originally started out at University of North Texas as a Music Performance major (clarinet) but ended up switching half way through. I graduated from University of Phoenix with a B.S. in IT and Web Development in 2012."
+  },
+  {
+    title: "Backbone, Ember, Meteor. Oh my!",
+    date: "2013",
+    description:
+      "I started playing around with jQuery and quickly found myself in the endless space of JavaScript frameworks. I started learning every framework I could on my off-time and was hooked."
+  },
+  {
+    title: "Promotion",
+    date: "2013",
+    description:
+      "I worked my way into a JavaScript developer role at the same company, although now known as HipLogiq."
+  },
+  {
+    title: "Exploration",
+    date: "2014",
+    description:
+      "I decided it was time to try something different, and went to work for a large corporation called JDSU as a Senior JavaScript Developer."
+  },
+  {
+    title: "Freedom!",
+    date: "2015",
+    description:
+      "Working remote was all the rage for developers, and I wanted to be a part of it. I accepted a position back at HipLogiq (now SocialCentiv) as the Lead Front-end Developer and was allowed to work remotely a few days a week, eventually moving to fully remote. My dream job."
+  },
+  {
+    title: "To be continued...",
+    date: "Present",
+    description:
+      "Although I'm still the Lead Front-end Developer at now Respondology, I've learned more than I could have imagined when I started this journey. I'm excited to see where the future leads."
+  }
+];
 
 export default function About(props) {
   return (
@@ -11,54 +57,29 @@ export default function About(props) {
       linkTextColor={styles.linkTextColor}
       pageBackgroundColor={styles.pageBackgroundColor}
     >
-      <div className={styles.contentInner}>
-        <h1 className={styles.title}>About Me</h1>
+      <main className={styles.contentInner}>
+        <header>
+          <h1 className={styles.title}>About Me</h1>
+        </header>
         <p className={styles.intro}>
-          Hi, my name is Zachary Dixon. I'm a front-end developer with over 7
-          years of professional experience. I'm comfortable with JavaScript
-          (React, Meteor), HTML, and CSS. I love learning new things and I'm not
-          afraid of diving head-first into the unknown.
+          Hi, my name is Zachary Dixon. I'm a front-end developer with over{" "}
+          {new Date().getFullYear() - 2012} years of professional experience.
+          I'm comfortable with JavaScript, HTML, and CSS. I love learning new
+          things and I'm not afraid of diving head-first into the unknown.
         </p>
-        <div className={styles.timeline}>
-          <Entry date="2012" title="My First Job!">
-            I landed my first developer job just before I graduated at a startup
-            called SocialCompass. I started out building landing pages and
-            emails.
-          </Entry>
-          <Entry right date="2012" title="Graduated (Finally)">
-            I originally started out at University of North Texas as a Music
-            Performance major (clarinet) but ended up switching half way
-            through. I graduated from University of Phoenix with a B.S. in IT
-            and Web Development in 2012.
-          </Entry>
-          <Entry date="2013" title="Backbone, Ember, Meteor. Oh My!">
-            I started playing around with jQuery and quickly found myself in the
-            endless space of JavaScript frameworks. I started learning every
-            framework I could on my off-time and was hooked.
-          </Entry>
-          <Entry right date="2013" title="Promotion">
-            I worked my way into a JavaScript developer role at the same
-            company, although now known as HipLogiq.
-          </Entry>
-          <Entry date="2014" title="Exploration">
-            I decided it was time to try something different, and went to work
-            for a large corporation called JDSU as a Senior JavaScript
-            Developer.
-          </Entry>
-          <Entry right date="2015" title="Freedom">
-            Working remote was all the rage for developers, and I wanted to be a
-            part of it. I accepted a position back at HipLogiq (now
-            SocialCentiv) as the Lead Front End Developer and was allowed to
-            work remotely a few days a week, eventually moving to fully remote.
-            My dream job.
-          </Entry>
-          <Entry date="Present" title="To be continued...">
-            Although I'm still the Lead Front End Developer at now Respondology,
-            I've learned more than I could have imagined when I started this
-            journey. I'm excited to see where the future leads.
-          </Entry>
-        </div>
-      </div>
+        <section className={styles.timeline}>
+          {entries.map((entry, index) => (
+            <Entry
+              key={entry.title}
+              date={entry.date}
+              title={entry.title}
+              right={index % 2 === 1}
+            >
+              {entry.description}
+            </Entry>
+          ))}
+        </section>
+      </main>
     </Page>
   );
 }
@@ -70,18 +91,22 @@ const Entry = ({ right, date, title, children }) => {
   } else {
     fadeProps.left = true;
   }
+  // const { x, y } = useMousePosition();
+  // console.log(x, y);
   return (
     <Fade {...fadeProps} delay={300}>
-      <div
-        className={[
-          styles.entry,
-          styles[`entry${right ? "Right" : "Left"}`]
-        ].join(" ")}
-      >
-        <p className={styles.entryDate}>{date}</p>
-        <p className={styles.entryTitle}>{title}</p>
-        <p className={styles.entryText}>{children}</p>
-      </div>
+      <Tilt>
+        <div
+          className={[
+            styles.entry,
+            styles[`entry${right ? "Right" : "Left"}`]
+          ].join(" ")}
+        >
+          <p className={styles.entryDate}>{date}</p>
+          <p className={styles.entryTitle}>{title}</p>
+          <p className={styles.entryText}>{children}</p>
+        </div>
+      </Tilt>
     </Fade>
   );
 };

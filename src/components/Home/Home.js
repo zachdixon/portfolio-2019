@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Home.module.scss";
+import Fade from "react-reveal/Fade";
 import Page from "components/Page";
 import Logo from "components/Logo";
 
@@ -17,12 +18,15 @@ export default function Home(props) {
           <Logo className={styles.logo} />
 
           <h1>
-            Zach
-            <br />
-            Dixon
-            <br />
-            <span>.dev</span>
+            <span>Zach</span>
+            <span>Dixon</span>
+            <span className={styles.dev}>.dev</span>
           </h1>
+          <Fade bottom>
+            <p className={styles.title}>
+              Front-End Developer &bull; Austin, TX
+            </p>
+          </Fade>
         </div>
       </div>
     </Page>

@@ -31,13 +31,12 @@ $color2: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   h1 {
     background-image: url(./profile.jpg);
     background-repeat: no-repeat;
     background-clip: text;
     -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
     background-size: 100%;
     line-height: 1;
     text-align: center;
@@ -46,10 +45,122 @@ $color2: #fff;
     text-transform: uppercase;
     background-position: 0 30%;
     font-family: Oswald;
-    font-size: 10em;
+    font-size: 10vmax;
 
-    span {
+    .dev {
       text-transform: lowercase;
     }
+
+    span {
+      display: block;
+      background: linear-gradient(#000, #000);
+      background-repeat: no-repeat;
+      background-size: 0 100%;
+      background-position: left;
+      animation: revealname 3s;
+      animation-fill-mode: forwards;
+      // &:after {
+      //   content: "";
+      //   width: 100%;
+      //   height: 100%;
+      //   background: black;
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   animation: revealname 800ms ease-in;
+      //   // animation-fill-mode: forwards;
+      //   transform: scaleX(0);
+      //   transform-origin: 100% 50% 0;
+      // }
+      &:nth-child(1) {
+        animation-delay: 1s;
+      }
+      &:nth-child(2) {
+        animation-delay: 1.5s;
+      }
+      &:nth-child(3) {
+        animation-delay: 2s;
+      }
+    }
+  }
+  .title {
+    margin-top: 10rem;
+    padding: 2rem 10rem;
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      border: 10px double black;
+      border-right: none;
+      border-left: none;
+      animation: animateTitleBorder 0.8s ease-in 1s;
+      animation-fill-mode: forwards;
+      top: -10px;
+      left: 0;
+    }
+  }
+}
+
+// @keyframes revealname {
+//   0% {
+//     transform: scaleX(0);
+//     transform-origin: 0 50% 0px;
+//   }
+//   25% {
+//     transform: scaleX(1);
+//     transform-origin: 0 50% 0px;
+//   }
+//   50% {
+//     transform: scaleX(1);
+//     transform-origin: 100% 50% 0px;
+//   }
+//   100% {
+//     transform: scaleX(0);
+//     transform-origin: 100% 50% 0px;
+//   }
+// }
+
+@keyframes revealname {
+  0% {
+    background-position: left;
+    background-size: 0 100%;
+    color: black;
+    -webkit-text-fill-color: black;
+  }
+  25% {
+    background-position: left;
+    background-size: 100% 100%;
+    color: black;
+    -webkit-text-fill-color: black;
+  }
+  26% {
+    background-position: right;
+    background-size: 100% 100%;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  50% {
+    background-position: right;
+    background-size: 0 100%;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  100% {
+    background-position: right;
+    background-size: 0 100%;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@keyframes animateTitleBorder {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
   }
 }

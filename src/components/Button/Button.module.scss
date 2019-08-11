@@ -1,0 +1,13 @@
+.button {
+  border: 1px solid black;
+  color: black;
+  padding: 5px 15px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 300ms;
+
+  &:hover {
+    color: white;
+    background: black;
+  }
+}

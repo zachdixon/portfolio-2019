@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import styles from "./Page.module.scss";
 import { CSSTransition } from "react-transition-group";
 import { Route, Link } from "react-router-dom";
-export default function Page({
+const Page = ({
   children,
   title,
   path,
@@ -13,8 +14,15 @@ export default function Page({
   linkBackgroundColor = "#000",
   linkTextColor = "#fff",
   pageBackgroundColor = "#000",
-  classNames = {}
-}) {
+  classNames = {},
+  onLinkHover = () => {},
+  direction = "center",
+  location: { pathname }
+}) => {
+  const pageContent = useRef(null);
+  useEffect(() => {
+    pageContent.current && pageContent.current.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <div
       onClick={onClick}
@@ -29,14 +37,19 @@ export default function Page({
         "--pageBackgroundColor": pageBackgroundColor
       }}
     >
-      <CSSTransition in={!active} timeout={600} classNames="fade-out">
-        <div className={styles.pageBackground} />
+      <CSSTransition in={!active} timeout={1500} classNames="page-background">
+        <div
+          className={styles.pageBackground}
+          style={{ transformOrigin: direction }}
+        />
       </CSSTransition>
-      <div className={[styles.pageContent, classNames.content].join(" ")}>
+      <div
+        ref={pageContent}
+        className={[styles.pageContent, classNames.content].join(" ")}
+      >
         <Route
           path={path}
-          render={props => React.cloneElement(children, props)}
-          exact={true}
+          render={props => (active ? React.cloneElement(children) : null)}
         />
       </div>
       <CSSTransition
@@ -53,10 +66,13 @@ export default function Page({
             ...overrideStyles.pageLink,
             "--linkTextColor": linkTextColor
           }}
+          onMouseOver={onLinkHover}
         >
-          <p>{linkText || title}</p>
+          {linkText || title}
         </Link>
       </CSSTransition>
     </div>
   );
-}
+};
+
+export default withRouter(Page);

@@ -18,11 +18,12 @@ $color5: #a88f6b;
 }
 
 .contentInner {
-  padding: 5em;
+  padding: 5vmax;
 }
 
 .title {
-  font-size: 5em;
+  font-family: "Permanent Marker", cursive;
+  font-size: 5vmax;
   color: $color1;
   text-shadow: -4px 0 0 $color3;
   margin-top: 0;
@@ -34,6 +35,7 @@ $color5: #a88f6b;
   font-weight: bold;
   font-size: 1.25em;
   margin-bottom: 60px;
+  line-height: 2;
 }
 
 .timeline {
@@ -42,8 +44,15 @@ $color5: #a88f6b;
 
 .entry {
   border: 0 groove $color3;
-  padding: 0 30px;
+  padding: 3rem;
   border-radius: 30px;
+  transition: all 3s;
+  transform-style: preserve-3d;
+  transform: scale3d(1, 1, 1);
+  &:hover {
+    transform: perspective(1000px) scale3d(1.1, 1.1, 1.1)
+      rotateX(var(--rotateX)) rotateY(var(--rotateY));
+  }
 }
 
 .entryLeft {
@@ -61,17 +70,19 @@ $color5: #a88f6b;
 .entryDate {
   color: $color1;
   text-shadow: -4px 0 0 $color3;
-  font-size: 3em;
+  font-size: 3.6rem;
   margin: 0;
+  font-weight: 900;
 }
 
 .entryTitle {
   font-weight: bold;
   text-transform: uppercase;
-  color: $color2;
+  color: $color5;
   margin-top: 0;
 }
 
 .entryText {
   color: $color2;
+  line-height: 1.5;
 }

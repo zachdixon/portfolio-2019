@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
-import styles from "./Desktop.module.scss";
-import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
+import { usePrevious } from "hooks";
+import ScrollToTop from "components/ScrollToTop";
 const Home = lazy(() => import("components/Home"));
 const About = lazy(() => import("components/About"));
 const Work = lazy(() => import("components/Work"));
@@ -15,23 +16,45 @@ const routes = [
   { name: "contact", path: "/contact", component: Contact }
 ];
 
-const Routes = withRouter(({ location }) =>
-  routes.map(({ name, path, component: Component }) => (
-    <Component
-      key={name}
-      title={name}
-      path={path}
-      active={location.pathname === path}
-    />
-  ))
-);
+const Routes = withRouter(({ history, location }) => {
+  const prevPage = usePrevious(
+    routes.find(route => {
+      return (
+        location.pathname.includes(route.name) ||
+        route.path === location.pathname
+      );
+    })
+  );
+  return routes.map(({ name, path, component: Component }) => {
+    return (
+      <Component
+        key={name}
+        title={name}
+        path={path}
+        active={
+          path === "/"
+            ? location.pathname === "/"
+            : location.pathname.includes(path)
+        }
+        direction={
+          routes.findIndex(route => route.name === name) >
+          routes.findIndex(route => route.name === prevPage)
+            ? "right"
+            : "left"
+        }
+      />
+    );
+  });
+});
 
 export default function Desktop(props) {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes />
-      </Suspense>
+      <ScrollToTop>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes />
+        </Suspense>
+      </ScrollToTop>
     </Router>
   );
 }

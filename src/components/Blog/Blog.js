@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Blog.module.scss";
 import Page from "components/Page";
+import ComingSoon from "components/ComingSoon";
 
 export default function Blog(props) {
   return (
@@ -10,8 +11,16 @@ export default function Blog(props) {
       linkTextColor={styles.linkTextColor}
       pageBackgroundColor={styles.pageBackgroundColor}
     >
-      <div>
-        <p>Blog content</p>
+      <div className={styles.contentInner}>
+        <ComingSoon
+          background={[
+            styles.color1,
+            styles.color2,
+            styles.color4,
+            styles.color5
+          ].join(",")}
+          backgroundSize="800%"
+        />
       </div>
     </Page>
   );
