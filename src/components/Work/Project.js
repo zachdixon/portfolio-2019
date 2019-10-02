@@ -4,7 +4,9 @@ import Button from "components/Button";
 
 const Project = ({ title, about, tech, achievement, resources, images }) => (
   <article className={styles.project}>
-    <Button to="/work">All Projects</Button>
+    <Button to="/work" style={{ marginBottom: "15px" }}>
+      All Projects
+    </Button>
 
     <div className={styles.projectImage}>
       <img src={require(`images/${images[0]}`)} alt="Project" />
