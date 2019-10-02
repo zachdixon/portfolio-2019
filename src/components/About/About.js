@@ -42,10 +42,10 @@ const entries = [
       "Working remote was all the rage for developers, and I wanted to be a part of it. I accepted a position back at HipLogiq (now SocialCentiv) as the Lead Front-end Developer and was allowed to work remotely a few days a week, eventually moving to fully remote. My dream job."
   },
   {
-    title: "To be continued...",
-    date: "Present",
+    title: "Changing It Up",
+    date: "2019",
     description:
-      "Although I'm still the Lead Front-end Developer at now Respondology, I've learned more than I could have imagined when I started this journey. I'm excited to see where the future leads."
+      "Started a new job at Red Ventures, more specifically The Points Guy. New industry, new challenges."
   }
 ];
 
