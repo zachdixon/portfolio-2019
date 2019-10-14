@@ -17,6 +17,10 @@ $pageTransitionTime: 1s;
     // .pageBackground {
     //   opacity: 0;
     // }
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+    }
     .pageContent {
       opacity: 1;
       transition: opacity 300ms;

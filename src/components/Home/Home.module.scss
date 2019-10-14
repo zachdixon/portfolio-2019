@@ -24,6 +24,11 @@ $color2: #fff;
   position: fixed;
   top: 50px;
   left: 50px;
+
+  @media screen and (max-width: 1024px) {
+    top: 20px;
+    left: 20px;
+  }
 }
 
 .hero {
@@ -87,6 +92,11 @@ $color2: #fff;
     margin-top: 10rem;
     padding: 2rem 10rem;
     position: relative;
+
+    @media screen and (max-width: 1024px) {
+      text-align: center;
+    }
+
     &:before {
       content: "";
       position: absolute;
@@ -100,6 +110,19 @@ $color2: #fff;
       animation-fill-mode: forwards;
       top: -10px;
       left: 0;
+    }
+  }
+  .btnResume {
+    margin-top: 50px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid;
+    padding: 10px;
+    transition: all 300ms;
+
+    &:hover {
+      background: black;
+      color: white;
     }
   }
 }

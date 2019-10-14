@@ -58,7 +58,8 @@ const projects = [
     title: "Portfolio",
     slug: "portfolio",
     type: "Website",
-    about: "My Portfolio site",
+    about:
+      "My own portfolio site, version two. Portfolios are a great place for developers to be creative and try things out that they normally may not be able to do on other projects. With this design, I tried to keep it simple so recruiters/interviewers can easily find what they need quickly, but also put in a few fun things in there to show my chops.",
     tech: ["React", "CSS/SCSS Modules", "Netlify", "Design"],
     images: ["portfolio.png"]
   },
