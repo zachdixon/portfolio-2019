@@ -9,7 +9,7 @@ const Project = ({ title, about, tech, achievement, resources, images }) => (
     </Button>
 
     <div className={styles.projectImage}>
-      <img src={require(`images/${images[0]}`)} alt="Project" />
+      <img src={images[0].original} alt="Project" />
     </div>
     <div className={styles.projectInfo}>
       <header>
@@ -22,7 +22,7 @@ const Project = ({ title, about, tech, achievement, resources, images }) => (
       <div>
         <h3>Tech Stack</h3>
         <ul>
-          {tech.map(tech => (
+          {tech.map((tech) => (
             <li key={tech}>{tech}</li>
           ))}
         </ul>
@@ -36,7 +36,7 @@ const Project = ({ title, about, tech, achievement, resources, images }) => (
       {resources ? (
         <div>
           <h3>Resources</h3>
-          {resources.map(resource => (
+          {resources.map((resource) => (
             <p key={resource}>resource</p>
           ))}
         </div>

@@ -37,7 +37,7 @@ const projects = [
       "MomentJS",
       "Storybook",
       "Netlify",
-      "UI/UX Design"
+      "UI/UX Design",
     ],
     resources: [
       <a
@@ -46,13 +46,28 @@ const projects = [
         rel="noreferrer noopener"
       >
         Respondology
-      </a>
+      </a>,
     ],
     images: [
-      "app.respondology.io.png",
-      "app.respondology.io-1.png",
-      "app.respondology.io-2.png"
-    ]
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/app.respondology.io.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/app.respondology.io-thumb.png",
+      },
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/app.respondology.io-1.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/app.respondology.io-1-thumb.png",
+      },
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/app.respondology.io-2.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/app.respondology.io-2-thumb.png",
+      },
+    ],
   },
   {
     title: "Portfolio",
@@ -61,7 +76,14 @@ const projects = [
     about:
       "My own portfolio site, version two. Portfolios are a great place for developers to be creative and try things out that they normally may not be able to do on other projects. With this design, I tried to keep it simple so recruiters/interviewers can easily find what they need quickly, but also put in a few fun things in there to show my chops.",
     tech: ["React", "CSS/SCSS Modules", "Netlify", "Design"],
-    images: ["portfolio.png"]
+    images: [
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/portfolio.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/portfolio-thumb.png",
+      },
+    ],
   },
   {
     title: "High Wire Computer",
@@ -69,7 +91,14 @@ const projects = [
     type: "Website",
     about: "High Wire Computer website",
     tech: ["Meteor", "Material UI", "Digital Ocean", "Design"],
-    images: ["highwirecomputer.com.png"]
+    images: [
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/highwirecomputer.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/highwirecomputer-thumb.png",
+      },
+    ],
   },
   {
     title: "Homemovies",
@@ -78,7 +107,14 @@ const projects = [
     about:
       "An application to get information about movies and create custom watchlists",
     tech: ["Meteor", "TMDB API", "Design"],
-    images: ["homemovies.png"]
+    images: [
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/homemovies.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/homemovies-thumb.png",
+      },
+    ],
   },
   {
     title: "SocialCentiv",
@@ -86,7 +122,14 @@ const projects = [
     type: "Web Application",
     about: "Front end web application for SocialCentiv",
     tech: ["BatmanJS", "Heroku"],
-    images: ["socialcentiv.png"]
+    images: [
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/socialcentiv.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/socialcentiv-thumb.png",
+      },
+    ],
   },
   {
     title: "SocialCompass",
@@ -94,7 +137,14 @@ const projects = [
     type: "Web Application",
     about: "Front end web application for SocialCompass.",
     tech: ["jQuery", "Ruby on Rails", "Design", "Google Maps/Search API"],
-    images: ["socialcompass.png"]
+    images: [
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/socialcompass.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/socialcompass-thumb.png",
+      },
+    ],
   },
   {
     title: "Clan Dixon",
@@ -102,7 +152,14 @@ const projects = [
     type: "Website",
     about: "A website about my family and heritage",
     tech: ["Meteor", "Design"],
-    images: ["dixon.png"]
+    images: [
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/dixon.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/dixon-thumb.png",
+      },
+    ],
   },
   {
     title: "Secretary",
@@ -111,7 +168,14 @@ const projects = [
     about:
       "An application I built to be used as a meeting organizer. The main feature was the calendar where employees could create events, reserve the conference room at the office if needed, and invite people to the meeting.",
     tech: ["Meteor", "MongoDB", "momentJS", "Heroku", "Design"],
-    images: ["secretary.png"]
+    images: [
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/secretary.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/secretary-thumb.png",
+      },
+    ],
   },
   {
     title: "Guardrail",
@@ -120,8 +184,15 @@ const projects = [
     about:
       "Guardrail was something I created to keep track of issues/bugs in our applications at SocialCentiv. You could create issues and mark the status of passing or failing. It also had the ability for other employees to create bug reports which helped with communication between teams.",
     tech: ["Meteor", "MongoDB", "Heroku", "Design"],
-    images: ["guardrail.png"]
-  }
+    images: [
+      {
+        original:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/originals/guardrail.png",
+        thumbnail:
+          "https://s3.us-east-2.amazonaws.com/zachdixon.dev/thumbnails/guardrail-thumb.png",
+      },
+    ],
+  },
   // {
   //   title: "",
   //   slug: "",

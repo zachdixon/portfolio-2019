@@ -10,23 +10,23 @@ const ProjectThumb = ({ title, slug, images }) => {
   return (
     <Visibility
       active={sensorActive}
-      onChange={isVisible => {
+      onChange={(isVisible) => {
         isVisible && setSensorActive(false);
       }}
     >
       {({ isVisible }) => (
         <Spring
           to={{
-            opacity: isVisible ? 1 : 0
+            opacity: isVisible ? 1 : 0,
           }}
         >
-          {props => (
+          {(props) => (
             <Link
               className={styles.projectThumb}
               to={`/work/${slug}`}
               style={props}
             >
-              <img src={require(`images/${images[0]}`)} alt={title} />
+              <img src={images[0].thumbnail} alt={title} />
             </Link>
           )}
         </Spring>
@@ -35,9 +35,9 @@ const ProjectThumb = ({ title, slug, images }) => {
   );
 };
 
-const ProjectList = props => (
+const ProjectList = (props) => (
   <div className={styles.projectList}>
-    {projects.map(project => (
+    {projects.map((project) => (
       <ProjectThumb key={project.title} {...project} />
     ))}
   </div>
